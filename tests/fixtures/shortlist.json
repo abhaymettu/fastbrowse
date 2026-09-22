@@ -1,0 +1,14 @@
+[
+  {"name": "ranked", "choice": "open", "probabilities": {"open": 0.6, "read": 0.25, "back": 0.1, "__none__": 0.05}, "confidence": 0.95, "reason": "ranked", "expected": ["open", "read", "back"]},
+  {"name": "tie_keeps_model_choice_then_input_order", "choice": "read", "probabilities": {"open": 0.3, "read": 0.3, "back": 0.3, "__none__": 0.1}, "confidence": 0.95, "reason": "ranked", "expected": ["read", "open", "back"]},
+  {"name": "omit_candidates_below_abstention", "choice": "open", "probabilities": {"open": 0.6, "read": 0.2, "back": 0.05, "__none__": 0.15}, "confidence": 0.95, "reason": "ranked", "expected": ["open", "read"]},
+  {"name": "uncertain", "choice": "open", "probabilities": {"open": 0.6, "read": 0.25, "back": 0.1, "__none__": 0.05}, "confidence": 0.2, "reason": "uncertain", "expected": []},
+  {"name": "none_suitable", "choice": "__none__", "probabilities": {"open": 0.1, "read": 0.1, "back": 0.1, "__none__": 0.7}, "confidence": 0.95, "reason": "abstain", "expected": []},
+  {"name": "abstention_tie", "choice": "open", "probabilities": {"open": 0.4, "read": 0.1, "back": 0.1, "__none__": 0.4}, "confidence": 0.95, "reason": "abstain", "expected": []},
+  {"name": "invented_terminal_choice", "choice": "complete", "probabilities": {"open": 0.6, "read": 0.25, "back": 0.1, "__none__": 0.05}, "confidence": 0.95, "reason": "invalid_response", "expected": []},
+  {"name": "invented_capability", "choice": "open", "probabilities": {"open": 0.6, "send": 0.25, "back": 0.1, "__none__": 0.05}, "confidence": 0.95, "reason": "invalid_response", "expected": []},
+  {"name": "missing_probability", "choice": "open", "probabilities": {"open": 0.6, "read": 0.25, "__none__": 0.15}, "confidence": 0.95, "reason": "invalid_response", "expected": []},
+  {"name": "nonmaximal_choice", "choice": "back", "probabilities": {"open": 0.6, "read": 0.25, "back": 0.1, "__none__": 0.05}, "confidence": 0.95, "reason": "invalid_response", "expected": []},
+  {"name": "bad_sum", "choice": "open", "probabilities": {"open": 0.9, "read": 0.9, "back": 0.9, "__none__": 0.05}, "confidence": 0.95, "reason": "invalid_response", "expected": []},
+  {"name": "negative_probability", "choice": "open", "probabilities": {"open": 0.7, "read": 0.25, "back": -0.1, "__none__": 0.15}, "confidence": 0.95, "reason": "invalid_response", "expected": []}
+]

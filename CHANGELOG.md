@@ -11,7 +11,9 @@ Older entries are kept verbatim rather than rewritten as the product moves.
 
 ## [Unreleased]
 
-Nothing yet.
+- Embedders can request up to five candidate IDs from one bounded Jev distribution through
+  `fastbrowse.shortlist`. Empty or uncertain advice falls back to the caller; the adapter grants no
+  permission and changes neither the default browser loop nor its verification gates.
 
 ## [0.4.2] - 2026-09-20
 

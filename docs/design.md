@@ -6,6 +6,9 @@ fastbrowse splits a browser agent into three owners:
 - **An LLM reads and writes.** Proposing a direct address for the task while the start page loads, planning checkable requirements from the task alone, reading page content for answers when Jev cannot pick a short fact from quoted spans, writing non-secret field text, recovering when Jev is unsure, verifying completion in the uncertain band, composing the final answer.
 - **Code owns the gates.** Freshness and hit-tests before every input, no automatic retry of a mutation, authorization for irreversible actions, secret resolution and redaction, budgets, and the definition of success: only `COMPLETE`, which requires every requirement evidenced.
 
+The opt-in [Jev shortlist adapter](shortlist.md) exposes bounded candidate advice to embedding callers.
+It does not dispatch actions or change the default loop, and every caller gate still applies.
+
 ## Browser capabilities over plain CDP (P0 spike, 2026-09-17)
 
 Verified with `cdp-use==1.4.5` against local headless Chrome and a Browser Use cloud browser:

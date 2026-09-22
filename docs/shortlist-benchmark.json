@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "upstream_sha": "1231850a0bf1a0c0341fe408ef1668dbbfdfac46",
+  "method": "One distribution versus three successive top-one choices on the same fixed ranking.",
+  "latency_source": "Offline fixture sleep; not a live provider or end-to-end browsing measurement.",
+  "repeats_per_mode": 7,
+  "fixture_delay_ms_per_evaluate": 20,
+  "network_calls": 0,
+  "credentials_used": 0,
+  "effects_dispatched": 0,
+  "cases": [
+    {
+      "candidate_count": 3,
+      "expected_and_returned": [
+        "c0",
+        "c1",
+        "c2"
+      ],
+      "distribution": {
+        "evaluate_calls_per_shortlist": 1,
+        "request_bytes_per_shortlist": 567,
+        "fixture_wait_ms_per_shortlist": 20,
+        "elapsed_ms_median": 22.205,
+        "elapsed_ms_min": 20.876,
+        "elapsed_ms_max": 22.362
+      },
+      "serial": {
+        "evaluate_calls_per_shortlist": 3,
+        "request_bytes_per_shortlist": 1611,
+        "fixture_wait_ms_per_shortlist": 60,
+        "elapsed_ms_median": 66.499,
+        "elapsed_ms_min": 64.765,
+        "elapsed_ms_max": 67.629
+      }
+    },
+    {
+      "candidate_count": 16,
+      "expected_and_returned": [
+        "c0",
+        "c1",
+        "c2"
+      ],
+      "distribution": {
+        "evaluate_calls_per_shortlist": 1,
+        "request_bytes_per_shortlist": 969,
+        "fixture_wait_ms_per_shortlist": 20,
+        "elapsed_ms_median": 22.166,
+        "elapsed_ms_min": 21.597,
+        "elapsed_ms_max": 22.205
+      },
+      "serial": {
+        "evaluate_calls_per_shortlist": 3,
+        "request_bytes_per_shortlist": 2817,
+        "fixture_wait_ms_per_shortlist": 60,
+        "elapsed_ms_median": 66.495,
+        "elapsed_ms_min": 65.829,
+        "elapsed_ms_max": 68.245
+      }
+    },
+    {
+      "candidate_count": 32,
+      "expected_and_returned": [
+        "c0",
+        "c1",
+        "c2"
+      ],
+      "distribution": {
+        "evaluate_calls_per_shortlist": 1,
+        "request_bytes_per_shortlist": 1481,
+        "fixture_wait_ms_per_shortlist": 20,
+        "elapsed_ms_median": 23.034,
+        "elapsed_ms_min": 21.365,
+        "elapsed_ms_max": 23.454
+      },
+      "serial": {
+        "evaluate_calls_per_shortlist": 3,
+        "request_bytes_per_shortlist": 4353,
+        "fixture_wait_ms_per_shortlist": 60,
+        "elapsed_ms_median": 66.531,
+        "elapsed_ms_min": 65.07,
+        "elapsed_ms_max": 68.294
+      }
+    }
+  ]
+}
