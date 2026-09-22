@@ -12,7 +12,7 @@ evals rather than taken from Typesafe.
 | Gateway | Model `typesafe-ai/jev` via `https://ai-gateway.vercel.sh/v4/ai/evaluation-model`, body `{state, questions}` ([Gateway](https://vercel.com/docs/ai-gateway/modalities/evaluation), [transport source](https://github.com/vercel/ai/blob/main/packages/gateway/src/gateway-evaluation-model.ts)) | `clients/vercel.py`, used with `AI_GATEWAY_API_KEY`; `FASTBROWSE_JEV_BASE_URL` retargets either |
 | Yes/no (Noul) | Direct returns `{type: "noul", noul: P(yes)}`; the gateway returns `probability`. Optional `true`/`false` criteria define the boundary ([Noul](https://docs.typesafe.ai/primitives/noul), [v1 migration](https://docs.typesafe.ai/migrating-to-v1)) | `clients/validation.py` decodes each shape separately |
 | Choice | The top `choice`, every option's probability, and a `confidence` ([Choice](https://docs.typesafe.ai/primitives/choice)) | `policy.py` (operation and target), `retrieval.py` (field and short-fact reads) |
-| Score | Ordered levels, returning a probability-weighted index ([Score](https://docs.typesafe.ai/primitives/score)) | Modelled in `jev.py`, not yet called |
+| Score | Ordered levels, returning a probability-weighted index ([Score](https://docs.typesafe.ai/primitives/score)) | `judge.py` (`fastbrowse-judge score`) only; the agent does not ask it yet |
 | Options | At most 255 per Choice ([Choice](https://docs.typesafe.ai/primitives/choice)) | `MAX_CHOICE_OPTIONS = 255`; the 240 cap and group-then-element selection are **ours** |
 | Tokens | 32k for state plus the largest question, 64k in total ([Models](https://docs.typesafe.ai/models)) | `TokenBudget` targets 24k and 48k; the headroom and `chars_per_token = 3.0` are **ours**, because tokens are estimated locally |
 | Rate limits | 1,200 requests a minute and 250k tokens a second on the direct API, subject to change ([Models](https://docs.typesafe.ai/models)); no extra gateway limit on paid tiers ([Gateway limits](https://vercel.com/docs/ai-gateway/rate-limits)) | A run makes a few requests a step, far below either |
@@ -56,7 +56,7 @@ and where fastbrowse follows it:
 
 - **Structured instructions** ([Structure](https://docs.typesafe.ai/primitives/advanced)): `jev.py`
   types instructions as strings. Structured criteria are used where they help: the tab choice passes each tab as an object.
-- **Score** for graded judgments such as relevance.
+- **Score** in the agent, for graded judgments such as relevance. Only `fastbrowse-judge` calls it.
 - **Full Choice distributions** for trying a second-best target, rather than only the top pick
   ([hierarchical classification](https://docs.typesafe.ai/cookbooks/hierarchical_classification)).
 

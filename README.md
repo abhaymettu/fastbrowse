@@ -313,6 +313,22 @@ Over HTTP, set `FASTBROWSE_MCP_TOKEN` and every request but `GET /healthz` needs
 `Authorization: Bearer <token>`. The server refuses to bind anything but loopback without one. A run takes
 seconds to minutes, so raise the client's tool timeout if it has one (`MCP_TOOL_TIMEOUT` in Claude Code).
 
+## Judge from the shell
+
+`fastbrowse-judge` asks Jev one question, for a script or another agent that wants a choice or a score
+without a browser. It uses the same `TYPESAFE_API_KEY` or `AI_GATEWAY_API_KEY`.
+
+```sh
+git diff | fastbrowse-judge choose "Which part of the agent does this change touch?" \
+    --option browser="Page indexing or capture" --option policy="Jev questions or thresholds"
+fastbrowse-judge score "How much does this change risk?" --level low --level medium --level high --text "$DIFF"
+```
+
+It prints one JSON object (`kind`, `verdict`, `choice` or `score` and `level`, `probabilities`, `confidence`,
+`reason`) and exits 0 when Jev decided, 3 when its confidence was under `--min-confidence` (default 0.5), 4
+when Jev could not be asked, with `reason` saying why, and 2 for a bad command line, with nothing on stdout.
+The judge only answers: it runs nothing and authorizes nothing.
+
 ## Safety model
 
 - **Irreversible actions.** Before any button or submit, Jev is asked whether it commits something

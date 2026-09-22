@@ -82,6 +82,9 @@ The run loop is `src/fastbrowse/agent.py`, and everything else is a seam it call
   which is how a no-op is told from progress. **`telemetry.py`** is the ledger: steps, calls, dollars.
 - **`cli.py`**, **`mcp_server.py`** and **`run_task`** are the three entry points; `options.py` holds the rules
   they share, so a flag means the same thing in all of them.
+- **`judge.py`** is `fastbrowse-judge`, one Jev Choice or Score from the shell for other agents' lanes. It
+  advises and never acts: it runs nothing, holds no authorization and imports none of the gates, and its exit 0
+  means Jev picked an option, not that anything may proceed.
 
 ## Invariants
 

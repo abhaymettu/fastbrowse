@@ -11,7 +11,11 @@ Older entries are kept verbatim rather than rewritten as the product moves.
 
 ## [Unreleased]
 
-Nothing yet.
+- **`fastbrowse-judge` asks Jev one question from the shell.** `choose` picks one of the options you name and
+  `score` places the input on levels you order; the input comes from `--text` or stdin. It prints one JSON
+  object and exits 0 when Jev decided, 3 when it was unsure, 4 when it could not be asked (no key, a timeout, a
+  failed request or an answer that failed validation), and 2 for a bad command line. The answer is advice: the
+  judge runs nothing and grants nothing, so a script that acts on it is making its own call.
 
 ## [0.4.2] - 2026-09-20
 
