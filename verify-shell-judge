@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+repo=${OG_REPO:-$(pwd)}
+head=$(git rev-parse HEAD)
+pass=true
+checks='[]'
+if [ ! -f src/fastbrowse/judge.py ] || [ ! -f tests/test_judge.py ]; then pass=false; fi
+if ! ./.venv/bin/python -m pytest -q tests/test_judge.py >/tmp/verify-shell-judge.out 2>&1; then pass=false; fi
+python3 - "$pass" "$repo" "$head" "${OG_ARTIFACT_SHA256:-unknown}" <<'PY2'
+import json,sys
+print(json.dumps({"verifier":"verify-shell-judge","pass":sys.argv[1]=='true',"repo":sys.argv[2],"head":sys.argv[3],"artifact_sha256":sys.argv[4],"checks":[{"name":"judge-files","pass":sys.argv[1]=='true'},{"name":"focused-tests","pass":sys.argv[1]=='true'}]}))
+PY2
