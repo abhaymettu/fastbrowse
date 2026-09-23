@@ -1,6 +1,6 @@
 #!/bin/sh
 set -eu
-repo=${OG_REPO:-$(pwd)}
+repo=${ORCA_GATE_REPO:-unknown}
 head=$(git rev-parse HEAD)
 pass=true
 checks='[]'
